@@ -16,7 +16,7 @@ describe('Day', () => {
     expect(newDay1.checkIsValidDay()).toEqual('not a valid day of the month');
     expect(newDay2.checkIsValidDay()).toEqual('not a valid day of the month');
     expect(newDay3.checkIsValidDay()).toEqual('days must be 1 or 2 digits');
-    expect(validDate.checkIsValidDay()).toEqual('day is valid 2');
+    expect(validDate.checkIsValidDay()).toEqual('day is valid');
   })
   
   test('should correctly determine whether values create a valid month', () => {
@@ -47,7 +47,7 @@ describe('Day', () => {
     expect(newDay2.checkDateForFebruary()).toEqual('February 29th only exists during a leap year');
     expect(newDay3.checkDateForFebruary()).toEqual('day is valid');
     expect(newDay4.checkDateForFebruary()).toEqual('day is valid');
-    expect(validDate.checkDateForFebruary()).toEqual('day is valid')
+    expect(validDate.checkDateForFebruary()).toEqual('day is not in February');
   })
   
   test('should prevent April, June, September, and November from having a day greater than 30', () => {
@@ -60,5 +60,23 @@ describe('Day', () => {
     expect(newDay3.checkDateForShortMonths()).toEqual('September only has 30 days');
     expect(newDay4.checkDateForShortMonths()).toEqual('November only has 30 days');
     expect(validDate.checkDateForShortMonths()).toEqual('day is valid');
+  })
+  
+  test('should successfully return a number between 1 and 6 representing the day of the week', () => {
+    let sunday = new Day(3, 6, 1990);
+    let monday = new Day(4, 6, 1990);
+    let tuesday = new Day(5, 6, 1990);
+    let wednesday = new Day(6, 6, 1990);
+    let thursday = new Day(7, 6, 1990);
+    let friday = new Day(8, 6, 1990);
+    let saturday = validDate;
+    let x  
+    expect(sunday.findDayOfTheWeek()).toEqual('Sunday');
+    expect(monday.findDayOfTheWeek()).toEqual('Monday');
+    expect(tuesday.findDayOfTheWeek()).toEqual('Tuesday');
+    expect(wednesday.findDayOfTheWeek()).toEqual('Wednesday');
+    expect(thursday.findDayOfTheWeek()).toEqual('Thursday');
+    expect(friday.findDayOfTheWeek()).toEqual('Friday');
+    expect(saturday.findDayOfTheWeek()).toEqual('Saturday');
   })
 })
